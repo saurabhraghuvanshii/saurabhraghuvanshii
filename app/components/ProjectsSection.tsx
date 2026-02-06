@@ -64,12 +64,12 @@ export default function ProjectsSection() {
           <span className="text-sm tracking-[0.3em] uppercase text-gray-400 font-mono">Projects</span>
           <div className="flex-1 h-px bg-gray-800" />
         </motion.div>
-        <br/>
+        <br/>  
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+         className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
         >
           Featured <span className="text-gradient-orange">Work</span>
         </motion.h2>

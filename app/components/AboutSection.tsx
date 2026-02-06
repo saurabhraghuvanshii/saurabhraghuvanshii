@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { MapPin, Code2, Zap } from "lucide-react";
 
 export default function AboutSection() {
@@ -21,7 +22,7 @@ export default function AboutSection() {
                     <span className="text-sm tracking-[0.3em] uppercase text-gray-400 font-mono">About Me</span>
                     <div className="flex-1 h-px bg-gray-800" />
                 </motion.div>
-                <br/> <br/>
+                <br /> <br />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     {/* Left side - Image (smaller) */}
                     <motion.div
@@ -33,22 +34,20 @@ export default function AboutSection() {
                         <div className="relative group max-w-[240px] sm:max-w-[260px] mx-auto lg:mx-0">
                             <div className="absolute -inset-1 bg-gradient-to-br from-orange via-orange-dark to-transparent rounded-2xl opacity-30 group-hover:opacity-60 transition-opacity blur-sm" />
                             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 group-hover:border-orange/40 transition-colors duration-300">
-                                {/* Profile image placeholder */}
-                                <div className="w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
-                                    <div className="text-center">
-                                        <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full bg-gradient-to-br from-orange/20 to-orange-dark/20 border-2 border-orange/30 flex items-center justify-center mb-3">
-                                            <span className="text-5xl sm:text-6xl font-black text-gradient-orange">S</span>
-                                        </div>
-                                        <p className="text-gray-400 text-sm font-medium">Saurabh Raghuvanshi</p>
-                                    </div>
-                                </div>
+                                <Image
+                                    src="/hilh.jpg"
+                                    alt="Saurabh Raghuvanshi"
+                                    fill
+                                    className="object-cover"
+                                    unoptimized
+                                />
                                 {/* Orange accent corner */}
                                 <div className="absolute top-0 right-0 w-12 h-12">
                                     <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-orange rounded-full animate-pulse" />
                                 </div>
                             </div>
                         </div>
-                        <br/>
+                        <br />
                         {/* Quick info cards */}
                         <div className="mt-5 space-y-2.5 max-w-[240px] sm:max-w-[260px] mx-auto lg:mx-0">
                             <div className="flex items-center gap-3 text-gray-400 text-sm hover:text-orange transition-colors duration-300 cursor-default">

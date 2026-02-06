@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   title: "Saurabh Singh | Portfolio",
   description: "Full-Stack Developer & Web3 Developer - Building the future of web",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/fevicon.jpg",
+    shortcut: "/fevicon.jpg",
+    apple: "/fevicon.jpg",
   },
 };
 

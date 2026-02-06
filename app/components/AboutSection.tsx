@@ -22,7 +22,7 @@ export default function AboutSection() {
                     <span className="text-sm tracking-[0.3em] uppercase text-gray-400 font-mono">About Me</span>
                     <div className="flex-1 h-px bg-gray-800" />
                 </motion.div>
-                <br /> <br />
+                <br />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     {/* Left side - Image (smaller) */}
                     <motion.div

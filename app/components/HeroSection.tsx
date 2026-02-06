@@ -65,12 +65,61 @@ export default function HeroSection() {
     };
   }, [smoothX, smoothY, isHovered]);
 
+  // Floating circles data
+  const floatingCircles = [
+    // Small circles
+    { size: 8, x: "10%", y: "20%", delay: 0, duration: 4 },
+    { size: 12, x: "85%", y: "15%", delay: 0.5, duration: 5 },
+    { size: 10, x: "15%", y: "70%", delay: 1, duration: 4.5 },
+    { size: 9, x: "90%", y: "60%", delay: 0.3, duration: 5.5 },
+    { size: 11, x: "5%", y: "45%", delay: 0.7, duration: 4 },
+    { size: 8, x: "75%", y: "80%", delay: 1.2, duration: 5 },
+    // Medium circles
+    { size: 20, x: "25%", y: "10%", delay: 0.2, duration: 6 },
+    { size: 18, x: "70%", y: "30%", delay: 0.8, duration: 5.5 },
+    { size: 22, x: "8%", y: "65%", delay: 0.4, duration: 6.5 },
+    { size: 16, x: "92%", y: "75%", delay: 1.1, duration: 5 },
+    { size: 19, x: "50%", y: "5%", delay: 0.6, duration: 6 },
+    // Large circles
+    { size: 35, x: "30%", y: "25%", delay: 0.3, duration: 7 },
+    { size: 32, x: "65%", y: "50%", delay: 0.9, duration: 7.5 },
+    { size: 38, x: "12%", y: "85%", delay: 0.5, duration: 8 },
+    { size: 30, x: "88%", y: "20%", delay: 1.3, duration: 6.5 },
+  ];
+
   return (
     <section
       ref={ref}
       id="hero"
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden"
     >
+      {/* Floating circles */}
+      {floatingCircles.map((circle, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full border border-orange/40 bg-orange/10 pointer-events-none z-[5]"
+          style={{
+            width: `${circle.size}px`,
+            height: `${circle.size}px`,
+            left: circle.x,
+            top: circle.y,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.15, 1],
+            y: [0, -40, 0],
+            x: [0, Math.sin(i) * 25, 0],
+          }}
+          transition={{
+            duration: circle.duration,
+            delay: circle.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
       {/* Main content with glass effect */}
       <motion.div
         ref={heroContentRef}

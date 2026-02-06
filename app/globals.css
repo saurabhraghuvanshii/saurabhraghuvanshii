@@ -1,26 +1,242 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-orange: #FF6B00;
+  --color-orange-light: #FF8C33;
+  --color-orange-dark: #CC5500;
+  --color-gray-900: #111111;
+  --color-gray-800: #1a1a1a;
+  --color-gray-700: #2a2a2a;
+  --color-gray-600: #3a3a3a;
+  --color-gray-500: #555555;
+  --color-gray-400: #777777;
+  --color-gray-300: #999999;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #000000;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6B00;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF8C33;
+}
+
+/* Orange frame */
+.orange-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border: 3px solid #FF6B00;
+  border-radius: 7px;
+}
+
+@media (min-width: 768px) {
+  .orange-frame {
+    border-width: 3px;
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .orange-frame {
+    border-width: 3px;
+    border-radius: 10px;
+  }
+}
+
+/* ==============================
+   CENTERING SYSTEM
+   Content always lives in the center with equal margins.
+   The .section-container class is applied inside every section.
+   ============================== */
+.section-container {
+  width: 100%;
+  max-width: 1280px; /* same as max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 5vw, 80px);
+  padding-right: clamp(20px, 5vw, 80px);
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Gradient text */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF6B00, #FF8C33, #FFAA00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect */
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3), 0 0 60px rgba(255, 107, 0, 0.1);
+}
+
+.glow-orange-text {
+  text-shadow: 0 0 40px rgba(255, 107, 0, 0.3);
+}
+
+/* Animated gradient border */
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* GitHub contribution graph cells */
+.contrib-cell {
+  transition: all 0.2s ease;
+}
+
+.contrib-cell:hover {
+  transform: scale(1.5);
+  z-index: 10;
+  filter: brightness(1.3);
+}
+
+/* Section transitions */
+.section-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover effects */
+.project-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 107, 0, 0.1);
+}
+
+.project-card:hover {
+  border-color: rgba(255, 107, 0, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+}
+
+/* Stat card */
+.stat-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 107, 0, 0.05);
+  border: 1px solid rgba(255, 107, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 107, 0, 0.12);
+  border-color: rgba(255, 107, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.1);
+}
+
+/* Targeting circle animation */
+@keyframes targetPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.target-ring {
+  animation: targetPulse 3s ease-in-out infinite;
+}
+
+/* Podium reflection */
+.podium-reflection {
+  background: linear-gradient(180deg, rgba(255, 107, 0, 0.15) 0%, transparent 100%);
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Global hover orange transitions for interactive elements */
+a, button {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Better text scaling on all screen sizes */
+@media (max-width: 640px) {
+  .orange-frame {
+    border-width: 1.5px;
+    border-radius: 4px;
+  }
 }

@@ -1,11 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #000000;
-  --color-foreground: #ffffff;
-  --color-orange: #FF6B00;
-  --color-orange-light: #FF8C33;
-  --color-orange-dark: #CC5500;
+  --color-background: hsl(0 0% 4%);
+  --color-foreground: hsl(0 0% 95%);
+  --color-card: hsl(0 0% 7%);
+  --color-card-foreground: hsl(0 0% 95%);
+  --color-popover: hsl(0 0% 7%);
+  --color-popover-foreground: hsl(0 0% 95%);
+  --color-primary: hsl(25 95% 53%);
+  --color-primary-foreground: hsl(0 0% 2%);
+  --color-secondary: hsl(0 0% 12%);
+  --color-secondary-foreground: hsl(0 0% 85%);
+  --color-muted: hsl(0 0% 15%);
+  --color-muted-foreground: hsl(0 0% 55%);
+  --color-accent: hsl(25 95% 53%);
+  --color-accent-foreground: hsl(0 0% 2%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(0 0% 14%);
+  --color-input: hsl(0 0% 14%);
+  --color-ring: hsl(25 95% 53%);
+  --color-orange: hsl(25 95% 53%);
+  --color-orange-light: hsl(30 100% 65%);
+  --color-orange-dark: hsl(20 90% 42%);
+  --color-orange-bright: hsl(33 100% 58%);
+  --color-surface-elevated: hsl(0 0% 9%);
   --color-gray-900: #111111;
   --color-gray-800: #1a1a1a;
   --color-gray-700: #2a2a2a;
@@ -13,150 +34,267 @@
   --color-gray-500: #555555;
   --color-gray-400: #777777;
   --color-gray-300: #999999;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', var(--font-geist-sans), sans-serif;
+  --font-mono: 'JetBrains Mono', var(--font-geist-mono), monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ==============================
+   CSS CUSTOM PROPERTIES
+   Bare HSL values for custom CSS: hsl(var(--orange) / 0.5)
+   ============================== */
+:root {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 95%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 95%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 25 95% 53%;
+  --primary-foreground: 0 0% 2%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 85%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 55%;
+  --accent: 25 95% 53%;
+  --accent-foreground: 0 0% 2%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --ring: 25 95% 53%;
+  --radius: 0.75rem;
+  --orange: 25 95% 53%;
+  --orange-light: 30 100% 65%;
+  --orange-dark: 20 90% 42%;
+  --orange-bright: 33 100% 58%;
+  --surface-elevated: 0 0% 9%;
+  --sidebar-background: 0 0% 6%;
+  --sidebar-foreground: 0 0% 85%;
+  --sidebar-primary: 25 95% 53%;
+  --sidebar-primary-foreground: 0 0% 2%;
+  --sidebar-accent: 0 0% 12%;
+  --sidebar-accent-foreground: 0 0% 85%;
+  --sidebar-border: 0 0% 14%;
+  --sidebar-ring: 25 95% 53%;
 }
 
-html {
-  scroll-behavior: smooth;
-  width: 100%;
+/* ==============================
+   BASE LAYER
+   ============================== */
+@layer base {
+  * {
+    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
 }
 
-body {
-  background: #000000;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-  width: 100%;
-  min-width: 0;
-}
-
-/* Custom scrollbar */
+/* ==============================
+   CUSTOM SCROLLBAR
+   ============================== */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: hsl(var(--background));
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #FF6B00;
+  background: hsl(var(--orange));
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF8C33;
+  background: hsl(var(--orange-light));
 }
 
-/* Orange frame */
+/* ==============================
+   ORANGE FRAME
+   ============================== */
 .orange-frame {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  border: 3px solid #FF6B00;
+  border: 3px solid hsl(var(--orange));
   border-radius: 7px;
 }
-
 @media (min-width: 768px) {
-  .orange-frame {
-    border-width: 3px;
-    border-radius: 8px;
-  }
+  .orange-frame { border-width: 3px; border-radius: 8px; }
 }
-
 @media (min-width: 1024px) {
-  .orange-frame {
-    border-width: 3px;
-    border-radius: 10px;
-  }
+  .orange-frame { border-width: 3px; border-radius: 10px; }
+}
+@media (max-width: 640px) {
+  .orange-frame { border-width: 1.5px; border-radius: 4px; }
 }
 
 /* ==============================
-   CENTERING SYSTEM
-   Content always lives in the center with equal margins.
-   The .section-container class is applied inside every section.
+   LAYOUT
    ============================== */
 .section-container {
   width: 100%;
-  max-width: 1280px; /* same as max-w-7xl */
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   padding-left: clamp(20px, 5vw, 80px);
   padding-right: clamp(20px, 5vw, 80px);
 }
 
-/* Grid background pattern */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
+/* ==============================
+   COMPONENT STYLES
+   ============================== */
 
 /* Gradient text */
 .text-gradient-orange {
-  background: linear-gradient(135deg, #FF6B00, #FF8C33, #FFAA00);
+  background: linear-gradient(to right, hsl(var(--orange-light)), hsl(var(--orange)), hsl(var(--orange-dark)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glow effect */
+/* Glow effects */
 .glow-orange {
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3), 0 0 60px rgba(255, 107, 0, 0.1);
+  box-shadow: 0 0 12px hsl(var(--orange) / 0.5), 0 0 24px hsl(var(--orange) / 0.2);
 }
-
 .glow-orange-text {
-  text-shadow: 0 0 40px rgba(255, 107, 0, 0.3);
+  text-shadow: 0 0 40px hsl(var(--orange) / 0.3);
+}
+.glow-orange-subtle {
+  box-shadow: 0 0 8px hsl(var(--orange) / 0.15);
 }
 
-/* Animated gradient border */
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Card hover */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  border-color: hsl(var(--orange) / 0.3);
+  box-shadow: 0 0 30px hsl(var(--orange) / 0.05);
+}
+
+/* Project card */
+.project-card {
+  border: 1px solid hsl(var(--border));
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-card:hover {
+  border-color: hsl(var(--orange) / 0.4);
+  box-shadow: 0 8px 40px hsl(var(--orange) / 0.08), 0 0 0 1px hsl(var(--orange) / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Timeline dot */
+.timeline-dot {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 4px solid hsl(var(--background));
+  background: hsl(var(--orange));
+  box-shadow: 0 0 12px hsl(var(--orange) / 0.5);
+}
+
+/* Stat card */
+.stat-card {
+  backdrop-filter: blur(10px);
+  background: hsl(var(--orange) / 0.05);
+  border: 1px solid hsl(var(--orange) / 0.15);
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  background: hsl(var(--orange) / 0.12);
+  border-color: hsl(var(--orange) / 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px hsl(var(--orange) / 0.1);
+}
+
+/* ==============================
+   ANIMATIONS & KEYFRAMES
+   ============================== */
 @keyframes borderGlow {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
-
-/* Floating animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
 }
-
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-30px) rotate(5deg); }
 }
-
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+@keyframes targetPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
-
 .animate-float-slow {
   animation: floatSlow 8s ease-in-out infinite;
 }
-
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* ==============================
+   MISC UTILITIES
+   ============================== */
 
 /* GitHub contribution graph cells */
 .contrib-cell {
   transition: all 0.2s ease;
 }
-
 .contrib-cell:hover {
   transform: scale(1.5);
   z-index: 10;
@@ -169,52 +307,19 @@ body {
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 .section-fade.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Card hover effects */
-.project-card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 107, 0, 0.1);
-}
-
-.project-card:hover {
-  border-color: rgba(255, 107, 0, 0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
-}
-
-/* Stat card */
-.stat-card {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 107, 0, 0.05);
-  border: 1px solid rgba(255, 107, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  background: rgba(255, 107, 0, 0.12);
-  border-color: rgba(255, 107, 0, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.1);
-}
-
-/* Targeting circle animation */
-@keyframes targetPulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-}
-
+/* Target ring */
 .target-ring {
   animation: targetPulse 3s ease-in-out infinite;
 }
 
 /* Podium reflection */
 .podium-reflection {
-  background: linear-gradient(180deg, rgba(255, 107, 0, 0.15) 0%, transparent 100%);
+  background: linear-gradient(180deg, hsl(var(--orange) / 0.15) 0%, transparent 100%);
 }
 
 /* Noise texture overlay */
@@ -228,15 +333,25 @@ body {
   z-index: 0;
 }
 
-/* Global hover orange transitions for interactive elements */
+/* Global transitions for interactive elements */
 a, button {
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Better text scaling on all screen sizes */
-@media (max-width: 640px) {
-  .orange-frame {
-    border-width: 1.5px;
-    border-radius: 4px;
-  }
+/* Font utilities */
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+
+*::selection {
+  background: rgba(255, 107, 0, 0.55) !important;
+  color: #ffffff !important;
+}
+*::-moz-selection {
+  background: rgba(255, 107, 0, 0.55) !important;
+  color: #ffffff !important;
 }

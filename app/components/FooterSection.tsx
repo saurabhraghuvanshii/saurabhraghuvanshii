@@ -12,6 +12,9 @@ function XIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+const EMAIL = "saurabhsraghuvanshi@gmail.com";
+const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}`;
+
 const socialLinks = [
   {
     name: "GitHub",
@@ -30,13 +33,12 @@ const socialLinks = [
   },
   {
     name: "Email",
-    url: "mailto:saurabhsraghuvanshi@gmail.com",
+    url: GMAIL_COMPOSE_URL,
     icon: Mail,
   },
 ];
 
 const navLinks = [
-  { name: "Hero", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
@@ -95,7 +97,7 @@ export default function FooterSection() {
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6">
             LET&apos;S BUILD
-            <br />
+
             <span className="text-gradient-orange">SOMETHING GREAT</span>
           </h2>
           <p className="text-gray-400 text-base sm:text-lg max-w-lg mb-10 text-center">
@@ -105,7 +107,9 @@ export default function FooterSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="mailto:saurabhsraghuvanshi@gmail.com"
+              href={GMAIL_COMPOSE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-3 bg-orange hover:bg-orange-light text-black font-bold px-8 sm:px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,107,0,0.4)] text-base sm:text-lg"
             >
               <span className="w-2 h-2 rounded-full bg-black inline-block" />
@@ -130,7 +134,7 @@ export default function FooterSection() {
           onMouseMove={handleBarMouseMove}
           onMouseEnter={() => setIsBarHovered(true)}
           onMouseLeave={() => setIsBarHovered(false)}
-          className={`relative overflow-hidden rounded-full border bg-black/40 backdrop-blur-xl px-6 py-4 md:px-8 md:py-4 max-w-4xl mx-auto transition-all duration-500 ${isBarHovered
+          className={`relative overflow-hidden rounded-full border bg-black/40 backdrop-blur-xl px-6 py-6 md:px-8 md:py-6 max-w-4xl mx-auto transition-all duration-500 ${isBarHovered
             ? "border-orange/40 shadow-[0_0_30px_rgba(255,107,0,0.12)]"
             : "border-gray-800/50"
             }`}
@@ -139,6 +143,7 @@ export default function FooterSection() {
             transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.4s ease, box-shadow 0.4s ease",
           }}
         >
+
           {/* Glass spotlight glow that follows cursor */}
           <div
             ref={glowRef}
@@ -164,9 +169,12 @@ export default function FooterSection() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5 }}
             >
-              <span className="text-2xl font-black">
+              <a
+                href="#hero"
+                className="text-2xl font-black text-white hover:text-orange transition-colors duration-300"
+              >
                 SAURABH<span className="text-orange">.</span>
-              </span>
+              </a>
             </motion.div>
 
             {/* Nav links */}

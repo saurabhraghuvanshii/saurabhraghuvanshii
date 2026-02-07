@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { MapPin, Code2, Zap } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export default function AboutSection() {
     const ref = useRef<HTMLDivElement>(null);
@@ -22,16 +22,15 @@ export default function AboutSection() {
                     <span className="text-sm tracking-[0.3em] uppercase text-gray-400 font-mono">About Me</span>
                     <div className="flex-1 h-px bg-gray-800" />
                 </motion.div>
-                <br />
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                    {/* Left side - Image (smaller) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
+                    {/* Left side - Small image */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="lg:col-span-4"
+                        className="lg:col-span-4 flex justify-start"
                     >
-                        <div className="relative group max-w-[240px] sm:max-w-[260px] mx-auto lg:mx-0">
+                        <div className="relative group w-[160px] sm:w-[180px]">
                             <div className="absolute -inset-1 bg-gradient-to-br from-orange via-orange-dark to-transparent rounded-2xl opacity-30 group-hover:opacity-60 transition-opacity blur-sm" />
                             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 group-hover:border-orange/40 transition-colors duration-300">
                                 <Image
@@ -41,26 +40,9 @@ export default function AboutSection() {
                                     className="object-cover"
                                     unoptimized
                                 />
-                                {/* Orange accent corner */}
                                 <div className="absolute top-0 right-0 w-12 h-12">
                                     <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-orange rounded-full animate-pulse" />
                                 </div>
-                            </div>
-                        </div>
-                        <br />
-                        {/* Quick info cards */}
-                        <div className="mt-5 space-y-2.5 max-w-[240px] sm:max-w-[260px] mx-auto lg:mx-0">
-                            <div className="flex items-center gap-3 text-gray-400 text-sm hover:text-orange transition-colors duration-300 cursor-default">
-                                <MapPin size={14} className="text-orange flex-shrink-0" />
-                                <span>India</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-400 text-sm hover:text-orange transition-colors duration-300 cursor-default">
-                                <Code2 size={14} className="text-orange flex-shrink-0" />
-                                <span>Full-Stack Developer</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-400 text-sm hover:text-orange transition-colors duration-300 cursor-default">
-                                <Zap size={14} className="text-orange flex-shrink-0" />
-                                <span>Web3 & Blockchain</span>
                             </div>
                         </div>
                     </motion.div>
@@ -72,9 +54,13 @@ export default function AboutSection() {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="lg:col-span-8"
                     >
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                            Building the <span className="text-gradient-orange">future</span> of the web
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+                            Hi, I&apos;m <span className="text-gradient-orange">Saurabh</span>
                         </h2>
+                        <p className="text-gray-400 text-lg md:text-xl mb-8 flex items-center gap-2">
+                            <MapPin size={18} className="text-orange shrink-0" />
+                            21, Varanasi
+                        </p>
 
                         <div className="space-y-4 text-gray-400 leading-relaxed text-base md:text-lg">
                             <p>

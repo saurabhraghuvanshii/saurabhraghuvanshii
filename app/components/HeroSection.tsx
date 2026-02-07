@@ -147,7 +147,7 @@ export default function HeroSection() {
         />
 
         {/* Content */}
-        <div className="relative z-10 px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 flex flex-col items-center">
+        <div className="relative z-30 px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,15 +198,15 @@ export default function HeroSection() {
       </motion.div>
 
       {/* 3D Football */}
-      <motion.div
+      {/* <motion.div
         className="absolute right-[2%] sm:right-[5%] top-[10%] sm:top-[15%] w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] z-20 pointer-events-auto"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
         style={{ y: footballY }}
-      >
-        {/* <Football3DScene /> */}
-      </motion.div>
+      > */}
+      {/* <Football3DScene /> */}
+      {/* </motion.div> */}
 
       {/* Scroll indicator */}
       <motion.div

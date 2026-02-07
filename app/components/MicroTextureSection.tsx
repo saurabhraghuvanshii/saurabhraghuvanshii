@@ -2,30 +2,45 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
-/* --- techItems unchanged --- */
+/* --- techItems organized by category --- */
 const techItems = [
-  { name: "React", icon: "⚛️", angle: 0, ring: "outer" },
-  { name: "Next.js", icon: "▲", angle: 51, ring: "outer" },
-  { name: "TypeScript", icon: "TS", angle: 102, ring: "outer" },
-  { name: "Node.js", icon: "⬡", angle: 153, ring: "outer" },
-  { name: "Python", icon: "🐍", angle: 204, ring: "outer" },
-  { name: "Solana", icon: "◎", angle: 255, ring: "outer" },
-  { name: "Web3.js", icon: "W3", angle: 306, ring: "outer" },
+  // Outer ring: Full-Stack (Frontend + Backend)
+  // Frontend
+  { name: "React", iconPath: "/react.svg", angle: 0, ring: "outer" },
+  { name: "Next.js", iconPath: "/next.svg", angle: 22.5, ring: "outer" },
+  { name: "TypeScript", iconPath: "/ts.svg", angle: 45, ring: "outer" },
+  { name: "Tailwind", iconPath: "/tailwind.svg", angle: 67.5, ring: "outer" },
+  { name: "Vite", iconPath: "/vite.svg", angle: 90, ring: "outer" },
+  { name: "TanStack", iconPath: "/tanstack.svg", angle: 112.5, ring: "outer" },
+  // Backend
+  { name: "Node.js", iconPath: "/node.svg", angle: 135, ring: "outer" },
+  { name: "Python", iconPath: "/python.svg", angle: 157.5, ring: "outer" },
+  { name: "Express", iconPath: "/express.svg", angle: 180, ring: "outer" },
+  { name: "MongoDB", iconPath: "/mongodb.svg", angle: 202.5, ring: "outer" },
+  { name: "PostgreSQL", iconPath: "/postgreSQL.svg", angle: 225, ring: "outer" },
+  { name: "GraphQL", iconPath: "/GraphQl.svg", angle: 247.5, ring: "outer" },
+  { name: "Supabase", iconPath: "/supabase.svg", angle: 270, ring: "outer" },
+  { name: "Bun", iconPath: "/bun.svg", angle: 292.5, ring: "outer" },
+  { name: "Deno", iconPath: "/deno.svg", angle: 315, ring: "outer" },
+  { name: "Go", iconPath: "/go.svg", angle: 337.5, ring: "outer" },
 
-  { name: "Docker", icon: "🐳", angle: 0, ring: "middle" },
-  { name: "Kubernetes", icon: "☸", angle: 45, ring: "middle" },
-  { name: "MongoDB", icon: "🍃", angle: 90, ring: "middle" },
-  { name: "PostgreSQL", icon: "🐘", angle: 135, ring: "middle" },
-  { name: "GraphQL", icon: "◈", angle: 180, ring: "middle" },
-  { name: "Ethers.js", icon: "Ξ", angle: 225, ring: "middle" },
-  { name: "Anchor", icon: "⚓", angle: 270, ring: "middle" },
-  { name: "AWS", icon: "☁️", angle: 315, ring: "middle" },
+  // Middle ring: DevOps
+  { name: "Docker", iconPath: "/docker.svg", angle: 0, ring: "middle" },
+  { name: "Kubernetes", iconPath: "/kubernetets.svg", angle: 45, ring: "middle" },
+  { name: "Terraform", iconPath: "/terraform.svg", angle: 90, ring: "middle" },
+  { name: "Git", iconPath: "/git.svg", angle: 135, ring: "middle" },
+  { name: "GitHub", iconPath: "/Github.svg", angle: 180, ring: "middle" },
+  { name: "Postman", iconPath: "/postman.svg", angle: 225, ring: "middle" },
+  { name: "Hugo", iconPath: "/Hugo.svg", angle: 270, ring: "middle" },
+  { name: "CI/CD", icon: "🔄", angle: 315, ring: "middle" },
 
-  { name: "Git", icon: "⎇", angle: 0, ring: "inner" },
-  { name: "Terraform", icon: "TF", angle: 72, ring: "inner" },
-  { name: "Web3", icon: "🌐", angle: 216, ring: "inner" },
-  { name: "CI/CD", icon: "🔄", angle: 288, ring: "inner" },
+  // Inner ring: Web3
+  { name: "Ethereum", iconPath: "/etherum.svg", angle: 0, ring: "inner" },
+  { name: "Solana", iconPath: "/solana.svg", angle: 90, ring: "inner" },
+  { name: "Solidity", iconPath: "/solidity.svg", angle: 180, ring: "inner" },
+  { name: "Web3.js", icon: "W3", angle: 270, ring: "inner" },
 ];
 
 export default function MicroTextureSection() {
@@ -165,8 +180,8 @@ export default function MicroTextureSection() {
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: 0.4 + i * 0.03 }}
                   className="
-                    px-6 py-3.5
-                    text-sm leading-none
+                    px-4 py-3
+                    text-sm leading-normal
                     rounded-2xl
                     border border-orange/40
                     bg-black/50
@@ -175,9 +190,21 @@ export default function MicroTextureSection() {
                     whitespace-nowrap
                     hover:border-orange hover:text-orange hover:bg-orange/15
                     transition-all
+                    flex items-center gap-2
                   "
                 >
-                  {tech.name}
+                  {tech.iconPath ? (
+                    <Image
+                      src={tech.iconPath}
+                      alt={tech.name}
+                      width={18}
+                      height={18}
+                      className="w-4 h-4 object-contain flex-shrink-0"
+                    />
+                  ) : tech.icon ? (
+                    <span className="text-base flex-shrink-0">{tech.icon}</span>
+                  ) : null}
+                  <span>{tech.name}</span>
                 </motion.span>
               ))}
             </div>
@@ -188,14 +215,24 @@ export default function MicroTextureSection() {
   );
 }
 
-/* Icon component (unchanged visuals) */
+/* Icon component with SVG support */
 function Icon({ tech }: any) {
   return (
     <div className="group flex flex-col items-center gap-0.5 cursor-default">
-      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/80 border border-orange/30 backdrop-blur-sm flex items-center justify-center group-hover:border-orange group-hover:bg-orange/20 group-hover:scale-125 transition-all duration-300">
-        <span className="text-sm font-bold">{tech.icon}</span>
+      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/80 border border-orange/30 backdrop-blur-sm flex items-center justify-center group-hover:border-orange group-hover:bg-orange/20 group-hover:scale-125 transition-all duration-300 overflow-hidden">
+        {tech.iconPath ? (
+          <Image
+            src={tech.iconPath}
+            alt={tech.name}
+            width={24}
+            height={24}
+            className="w-5 h-5 sm:w-6 sm:h-6 object-contain filter group-hover:brightness-110 transition-all duration-300"
+          />
+        ) : (
+          <span className="text-sm font-bold">{tech.icon}</span>
+        )}
       </div>
-      <span className="text-[8px] text-gray-500 font-mono opacity-0 group-hover:opacity-100">
+      <span className="text-[8px] text-gray-500 font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {tech.name}
       </span>
     </div>

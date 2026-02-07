@@ -7,9 +7,10 @@ import MicroTextureSection from "./components/MicroTextureSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ProjectsSection from "./components/ProjectsSection";
 import GitHubGraph from "./components/GitHubGraph";
-import ChampionSection from "./components/ChampionSection";
+// import ChampionSection from "./components/ChampionSection";
 import FooterSection from "./components/FooterSection";
 import FloatingBackground from "./components/FloatingBackground";
+import ScrollProgressIndicator from "./components/ScrollProgressIndicator";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
       {/* Grid lines + Floating triangles across entire page */}
       <FloatingBackground />
 
+      {/* Scroll Progress Indicator */}
+      <ScrollProgressIndicator />
+
       {/* Navigation */}
       <Navbar />
 
@@ -27,19 +31,19 @@ export default function Home() {
       <main className="relative z-10 w-full">
         <HeroSection />
         <AboutSection />
-        <br/> <br/> <br/>
+        <br /> <br /> <br />
         <ExperienceSection />
-        <br/> <br/> <br/>
+        <br /> <br /> <br />
         <ProjectsSection />
-        <br/> <br/>  <br/>
+        <br /> <br />  <br />
         <MicroTextureSection />
-        <br/> <br/> <br/>
+        <br /> <br /> <br />
         <GitHubGraph />
-        <br/>  <br/> <br/>
+        <br />  <br /> <br />
         {/* <ChampionSection /> */}
-        <br/> <br/> <br/>
+        <br /> <br /> <br />
         <FooterSection />
-        <br/> <br/>
+        <br /> <br />
       </main>
     </div>
   );
